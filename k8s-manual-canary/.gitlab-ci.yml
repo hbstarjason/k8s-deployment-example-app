@@ -1,0 +1,19 @@
+image: traherom/kustomize-docker
+
+before_script:
+    - printenv
+    - kubectl version
+
+stages:
+  - deploy
+
+deploy test:
+    stage: deploy
+    before_script:
+      - echo $KUBECONFIG
+    script:
+      - kubectl get all
+      - kubectl apply -f ./
+
+    only:
+      - master
