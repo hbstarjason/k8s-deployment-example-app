@@ -15,7 +15,7 @@ spec:
         type: canary
     spec:
       containers:
-      - image: registry.gitlab.com/wuestkamp/k8s-deployment-example-app:v2
+      - image: hbstarjason/k8s-deployment-example-app:v2
         imagePullPolicy: Always
         name: app
         resources:

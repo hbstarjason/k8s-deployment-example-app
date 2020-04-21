@@ -15,7 +15,7 @@ spec:
         type: main
     spec:
       containers:
-      - image: registry.gitlab.com/wuestkamp/k8s-deployment-example-app:v1
+      - image: hbstarjason/k8s-deployment-example-app:v1
         imagePullPolicy: Always
         name: app
         resources:
