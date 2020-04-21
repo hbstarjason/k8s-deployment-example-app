@@ -1,0 +1,27 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
+metadata:
+  name: rollout-canary
+spec:
+  replicas: 10
+  revisionHistoryLimit: 2
+  selector:
+    matchLabels:
+      id: rollout-canary
+  template:
+    metadata:
+      labels:
+        id: rollout-canary
+    spec:
+      containers:
+      - name: rollouts-demo
+        image: hbstarjason/k8s-deployment-example-app:v2
+        imagePullPolicy: Always
+  strategy:
+    canary:
+      steps:
+      - setWeight: 10
+      # Rollouts can be manually resumed by running `kubectl argo rollouts promote ROLLOUT`
+      - pause: {}
+      - setWeight: 50
+      - pause: { duration: 120 } # two minutes
