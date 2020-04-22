@@ -16,6 +16,7 @@ spec:
       containers:
       - name: rollouts-demo
         image: hbstarjason/k8s-deployment-example-app:v2
+        #image: registry.gitlab.com/wuestkamp/k8s-deployment-example-app:v2
         imagePullPolicy: Always
   strategy:
     canary:
