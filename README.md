@@ -4,6 +4,8 @@
 # install argo-cd
 # https://argoproj.github.io/argo-cd/getting_started/
 
+# https://github.com/hbstarjason/Continuous-Deploy/blob/master/Argocd-install.md
+
 $ kubectl create namespace argocd
 $ kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
 $ kubectl patch svc argocd-server -n argocd -p '{"spec": {"type": "LoadBalancer"}}'
@@ -11,6 +13,8 @@ $ kubectl patch svc argocd-server -n argocd -p '{"spec": {"type": "LoadBalancer"
 
 # install argo-rollouts
 # https://argoproj.github.io/argo-rollouts/getting-started/
+
+# https://github.com/hbstarjason/Continuous-Deploy/blob/master/Argorollout-install.md
 
 $ kubectl create namespace argo-rollouts
 $ kubectl apply -n argo-rollouts -f https://raw.githubusercontent.com/argoproj/argo-rollouts/stable/manifests/install.yaml
