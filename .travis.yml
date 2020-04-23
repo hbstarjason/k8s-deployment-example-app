@@ -1,12 +1,14 @@
 # https://docs.travis-ci.com/user/languages/python/
 
-sudo: false
-language: python
-python:
-  - "3.7"
-cache: pip
-install:
-  - pip install -r requirements.txt
+#sudo: false
+#language: python
+#python:
+#  - "3.7"
+#cache: pip
+#install:
+#  - pip install -r requirements.txt
+
+# script: python -m pytest --cov=src/
 
 # https://docs.travis-ci.com/user/docker/
 # https://docs.travis-ci.com/user/build-stages/share-docker-image/
@@ -14,7 +16,6 @@ install:
 services:
   - docker
   
-# script: python -m pytest --cov=src/
 before_deploy:
     - docker build -t hbstarjason/k8s-deployment-example-app:$TRAVIS_TAG .
 deploy:
