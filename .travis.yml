@@ -33,7 +33,7 @@ script:
 # IMAGE_TAG=v1
 # IMAGE_TAG=version2
 env: 
-  - IMAGE_TAG=v1
+  - IMAGE_TAG=version2
   
 jobs:
   include:
@@ -46,5 +46,7 @@ jobs:
       - docker tag k8s-deployment-example-app $DOCKER_USERNAME/k8s-deployment-example-app:$IMAGE_TAG
       - docker push $DOCKER_USERNAME/k8s-deployment-example-app:$IMAGE_TAG
     - stage: test
-      script: docker run --rm $DOCKER_USERNAME/k8s-deployment-example-app:$IMAGE_TAG
-    - script: docker run --rm $DOCKER_USERNAME/k8s-deployment-example-app:$IMAGE_TAG | grep label
+      # script: docker run --rm $DOCKER_USERNAME/k8s-deployment-example-app:$IMAGE_TAG
+      script: docker run --rm -p 5000:5000 $DOCKER_USERNAME/k8s-deployment-example-app:$IMAGE_TAG
+    #- script: docker run --rm $DOCKER_USERNAME/k8s-deployment-example-app:$IMAGE_TAG | grep label
+    - script: curl -s localhost:5000 | grep label
