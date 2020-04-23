@@ -24,6 +24,7 @@ spec:
       steps:
       - setWeight: 10
       # Rollouts can be manually resumed by running `kubectl argo rollouts promote ROLLOUT`
-      - pause: { duration: 60 } # one minutes
+      - pause: {  } # one minutes
+      # - pause: { duration: 60 } # one minutes
       - setWeight: 50
       - pause: { duration: 120 } # two minutes
