@@ -19,10 +19,22 @@ dist: trusty
 services:
   - docker
   
-before_deploy:
-    - docker build -t hbstarjason/k8s-deployment-example-app:$TRAVIS_TAG .
-deploy:
-    provider: script
-    script: docker.sh
-    on:
-        tags: true
+#before_deploy:
+#    - docker build -t hbstarjason/k8s-deployment-example-app:$TRAVIS_TAG .
+#deploy:
+#    provider: script
+#    script: docker.sh
+#    on:
+#        tags: true
+jobs:
+  include:
+    - stage: build docker image and push image
+      script:
+      - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
+      - docker build -t Dockerfile .
+      - docker images
+      - docker tag k8s-deployment-example-app $DOCKER_USERNAME/k8s-deployment-example-app
+      - docker push $DOCKER_USERNAME/k8s-deployment-example-app
+    #- stage: test
+    #  script: docker run --rm $DOCKER_USERNAME/travis-ci-build-stages-demo cat hello.txt
+    #- script: docker run --rm $DOCKER_USERNAME/travis-ci-build-stages-demo cat hello.txt
