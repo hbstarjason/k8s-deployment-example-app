@@ -10,12 +10,11 @@
 
 # script: python -m pytest --cov=src/
 
-# https://docs.travis-ci.com/user/docker/
-# https://docs.travis-ci.com/user/build-stages/share-docker-image/
-
 sudo: true
 dist: trusty
 
+# https://docs.travis-ci.com/user/docker/
+# https://docs.travis-ci.com/user/build-stages/share-docker-image/
 services:
   - docker
   
@@ -45,8 +44,8 @@ jobs:
       - docker images
       - docker tag k8s-deployment-example-app $DOCKER_USERNAME/k8s-deployment-example-app:$IMAGE_TAG
       - docker push $DOCKER_USERNAME/k8s-deployment-example-app:$IMAGE_TAG
-    - stage: test
+    #- stage: test
       # script: docker run --rm $DOCKER_USERNAME/k8s-deployment-example-app:$IMAGE_TAG
-      script: docker run --rm -p 5000:5000 $DOCKER_USERNAME/k8s-deployment-example-app:$IMAGE_TAG
+      #script: docker run --rm -p 5000:5000 $DOCKER_USERNAME/k8s-deployment-example-app:$IMAGE_TAG
     #- script: docker run --rm $DOCKER_USERNAME/k8s-deployment-example-app:$IMAGE_TAG | grep label
-    - script: curl -s localhost:5000 | grep label
+    #- script: curl -s localhost:5000 | grep label
