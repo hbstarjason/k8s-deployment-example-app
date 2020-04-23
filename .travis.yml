@@ -35,7 +35,7 @@ jobs:
     - stage: build docker image and push image
       script:
       - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
-      - docker build -t Dockerfile .
+      - docker build -t k8s-deployment-example-app .
       - docker images
       - docker tag k8s-deployment-example-app $DOCKER_USERNAME/k8s-deployment-example-app
       - docker push $DOCKER_USERNAME/k8s-deployment-example-app
