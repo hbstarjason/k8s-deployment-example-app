@@ -32,7 +32,7 @@ script:
 # IMAGE_TAG=v1
 # IMAGE_TAG=version2
 env: 
-  - IMAGE_TAG=v1
+  - IMAGE_TAG=version2
   
 jobs:
   include:
