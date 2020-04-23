@@ -29,16 +29,22 @@ services:
 script: 
   - git clone https://github.com/hbstarjason/k8s-deployment-example-app
   - cd k8s-deployment-example-app
+
+# IMAGE_TAG=v1
+# IMAGE_TAG=version2
+env: 
+  - IMAGE_TAG=v1
   
 jobs:
   include:
     - stage: build docker image and push image
       script:
+      - docker info
       - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
       - docker build -t k8s-deployment-example-app .
       - docker images
-      - docker tag k8s-deployment-example-app $DOCKER_USERNAME/k8s-deployment-example-app
-      - docker push $DOCKER_USERNAME/k8s-deployment-example-app
-    #- stage: test
-    #  script: docker run --rm $DOCKER_USERNAME/travis-ci-build-stages-demo cat hello.txt
-    #- script: docker run --rm $DOCKER_USERNAME/travis-ci-build-stages-demo cat hello.txt
+      - docker tag k8s-deployment-example-app $DOCKER_USERNAME/k8s-deployment-example-app:$IMAGE_TAG
+      - docker push $DOCKER_USERNAME/k8s-deployment-example-app:$IMAGE_TAG
+    - stage: test
+      script: docker run --rm $DOCKER_USERNAME/k8s-deployment-example-app:$IMAGE_TAG
+    - script: docker run --rm $DOCKER_USERNAME/k8s-deployment-example-app:$IMAGE_TAG | grep label
