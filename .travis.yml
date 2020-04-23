@@ -1,9 +1,9 @@
 # https://docs.travis-ci.com/user/languages/python/
 
 #sudo: false
-language: python
-python:
-  - "3.7"
+#language: python
+#python:
+#  - "3.7"
 #cache: pip
 #install:
 #  - pip install -r requirements.txt
@@ -12,6 +12,9 @@ python:
 
 # https://docs.travis-ci.com/user/docker/
 # https://docs.travis-ci.com/user/build-stages/share-docker-image/
+
+sudo: true
+dist: trusty
 
 services:
   - docker
