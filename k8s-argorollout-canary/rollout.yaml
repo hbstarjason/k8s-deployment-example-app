@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: rollouts-demo
-        image: hbstarjason/k8s-deployment-example-app:version2
+        image: hbstarjason/k8s-deployment-example-app:v1
         #image: hbstarjason/k8s-deployment-example-app:version2
         #image: registry.gitlab.com/wuestkamp/k8s-deployment-example-app:v2
         imagePullPolicy: Always
@@ -24,7 +24,7 @@ spec:
       steps:
       - setWeight: 10
       # Rollouts can be manually resumed by running `kubectl argo rollouts promote ROLLOUT`
-      - pause: {} # one minutes
+      - pause: {} 
       # - pause: { duration: 60 } # one minutes
       - setWeight: 50
       - pause: { duration: 120 } # two minutes
