@@ -40,9 +40,9 @@ jobs:
       script:
       - docker info
       - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
-      - docker build -t k8s-deployment-example-app .
+      - docker build -t k8s-deployment-example-app:$IMAGE_TAG .
       - docker images
-      - docker tag k8s-deployment-example-app $DOCKER_USERNAME/k8s-deployment-example-app:$IMAGE_TAG
+      - docker tag k8s-deployment-example-app:$IMAGE_TAG $DOCKER_USERNAME/k8s-deployment-example-app:$IMAGE_TAG
       - docker push $DOCKER_USERNAME/k8s-deployment-example-app:$IMAGE_TAG
     #- stage: test
       # script: docker run --rm $DOCKER_USERNAME/k8s-deployment-example-app:$IMAGE_TAG
