@@ -14,5 +14,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+      with:
+        persist-credentials: false
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag k8s-deployment-example-app:$(date +%s)
