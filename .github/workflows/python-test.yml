@@ -16,12 +16,17 @@ jobs:
     strategy:
       matrix:
         #python-version: [3.5, 3.6, 3.7, 3.8]
-        python-version: [3.7]
+        python-version: [3.6, 3.7]
+    #services:
+      #postgres:
+        #image: postgres:latest
+        #ports:
+          #- 5432/tcp
 
     steps:
-    - uses: actions/checkout@v2
-      with:
-        persist-credentials: false
+    - uses: actions/checkout@v1
+      #with:
+        #persist-credentials: false
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v1
       with:
@@ -40,3 +45,5 @@ jobs:
     - name: Test with pytest
       run: |
         pytest
+      # env:
+         # POSTGRES_PORT: ${{ job.services.postgres.ports['5432'] }}
